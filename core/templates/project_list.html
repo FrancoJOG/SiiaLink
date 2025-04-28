@@ -1,0 +1,29 @@
+{% load static %}
+{% load humanize %}  <!-- Carga el filtro humanize para formatear números grandes -->
+{% load i18n %}  <!-- Carga el sistema de traducción de Django -->
+{% load tz %}  <!-- Carga el sistema de zonas horarias de Django -->
+{% load url from static %}  <!-- Carga la función url para generar URLs estáticas -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Proyectos</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Carga el archivo CSS -->
+</head>
+<body>
+    <h1>Proyectos Activos</h1>
+    <ul>
+        {% for project in projects %}
+            <li class="project-item">
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.description }}</p>
+                <p><strong>Área:</strong> {{ project.area }}</p>
+                <p><strong>Estado:</strong> {{ project.get_status_display }}</p>
+            </li>
+        {% empty %}
+            <li>No hay proyectos disponibles.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
