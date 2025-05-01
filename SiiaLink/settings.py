@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent 
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_datepicker_plus', # Asegúrate de que este paquete esté instalado
+    'crispy_forms',
+    'crispy_bootstrap5',  # Si usas Bootstrap 5
     'core',
 ]
 
@@ -73,9 +76,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Si tus archivos estáticos están en una carpeta llamada "static" dentro de tu proyecto
 ]
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 WSGI_APPLICATION = 'SiiaLink.wsgi.application'
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# settings.py
+handler404 = 'core.views.error' #Busca la vista error en el archivo views.py de la app core y la asigna a la URL 404
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

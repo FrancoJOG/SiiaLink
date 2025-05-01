@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Nuevo Proyecto - SiaaLink{% endblock %}
+
+{% block page_heading %}Crear Nuevo Proyecto{% endblock %}
+
+{% block page_actions %}
+    <a href="{% url 'project_list' %}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Volver a proyectos
+    </a>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Información del Proyecto</h6>
+    </div>
+    <div class="card-body">
+        <form method="post" id="projectForm">
+            {% csrf_token %}
+            
+            <!-- Sección 1: Información básica -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                        {{ form.title }}
+                        {% if form.title.help_text %}
+                            <small class="form-text text-muted">{{ form.title.help_text }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="{{ form.project_type.id_for_label }}">{{ form.project_type.label }}</label>
+                        {{ form.project_type }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección 2: Área y palabras clave -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.area.id_for_label }}">{{ form.area.label }}</label>
+                        {{ form.area }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.keywords.id_for_label }}">{{ form.keywords.label }}</label>
+                        {{ form.keywords }}
+                        <small class="form-text text-muted">Separe las palabras clave con comas (ej: IA, Machine Learning, Python)</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección 3: Descripción y objetivos -->
+            <div class="form-group mb-4">
+                <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                {{ form.description }}
+            </div>
+            
+            <div class="form-group mb-4">
+                <label for="{{ form.objectives.id_for_label }}">{{ form.objectives.label }}</label>
+                {{ form.objectives }}
+            </div>
+            
+            <div class="form-group mb-4">
+                <label for="{{ form.requirements.id_for_label }}">{{ form.requirements.label }}</label>
+                {{ form.requirements }}
+            </div>
+            
+            <!-- Sección 4: Fechas -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.start_date.id_for_label }}">{{ form.start_date.label }}</label>
+                        {{ form.start_date }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.end_date.id_for_label }}">{{ form.end_date.label }}</label>
+                        {{ form.end_date }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección 5: Configuraciones -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-check">
+                            {{ form.is_open }}
+                            <label class="form-check-label" for="{{ form.is_open.id_for_label }}">
+                                {{ form.is_open.label }}
+                            </label>
+                        </div>
+                        <small class="form-text text-muted">¿Permitir que otros usuarios se unan al proyecto?</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="{{ form.role_required.id_for_label }}">{{ form.role_required.label }}</label>
+                        {{ form.role_required }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones de acción -->
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-save"></i>
+                    </span>
+                    <span class="text">Guardar Proyecto</span>
+                </button>
+                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-icon-split ml-2">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span class="text">Cancelar</span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Estilos para los campos de texto */
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    /* Estilos para los campos de fecha */
+    input[type="date"] {
+        height: calc(1.5em + 1rem + 2px);
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Mejora el aspecto de los checkboxes */
+    .form-check-input {
+        margin-top: 0.3rem;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Validación básica del formulario
+    $('#projectForm').submit(function(e) {
+        let isValid = true;
+        
+        // Validar que el título no esté vacío
+        if ($('#id_title').val().trim() === '') {
+            alert('El título del proyecto es requerido');
+            isValid = false;
+        }
+        
+        // Validar fechas
+        const startDate = new Date($('#id_start_date').val());
+        const endDate = new Date($('#id_end_date').val());
+        
+        if ($('#id_end_date').val() && startDate > endDate) {
+            alert('La fecha de término no puede ser anterior a la fecha de inicio');
+            isValid = false;
+        }
+        
+        return isValid;
+    });
+    
+    // Opcional: Inicializar tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+{% endblock %}

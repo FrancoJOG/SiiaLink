@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Búsqueda de Stakeholders - SiaaLink{% endblock %}
+
+{% block page_heading %}Buscar Stakeholders{% endblock %}
+
+{% block page_actions %}
+    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#searchHelpModal">
+        <i class="fas fa-question-circle fa-sm text-white-50"></i> Cómo buscar
+    </button>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="search-header">
+            <div class="input-group">
+                <input type="text" id="stakeholderSearch" class="form-control bg-light border-0" 
+                       placeholder="Buscar por nombre, habilidades o proyectos..." 
+                       aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="searchButton">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Filtros Rápidos -->
+        <div class="mb-4">
+            <div class="d-flex flex-wrap">
+                <div class="mr-3 mb-2">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary active">Todos</button>
+                        <button type="button" class="btn btn-outline-primary">Asesores</button>
+                        <button type="button" class="btn btn-outline-primary">Colaboradores</button>
+                        <button type="button" class="btn btn-outline-primary">Inversionistas</button>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary active">Relevancia</button>
+                        <button type="button" class="btn btn-outline-secondary">Más recientes</button>
+                        <button type="button" class="btn btn-outline-secondary">Mejor valorados</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados de Búsqueda -->
+        <div id="searchResults">
+            <!-- Resultado 1 -->
+            <div class="card mb-3 border-left-primary">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img class="rounded-circle mb-3" src="{% static 'img/undraw_profile_1.svg' %}" width="80" height="80">
+                            <div class="h6 mb-0 font-weight-bold">Dr. Carlos R.</div>
+                            <small class="text-primary">Asesor Académico</small>
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title font-weight-bold">Experto en IA y Machine Learning</h5>
+                            <p class="card-text">Profesor titular con 10 años de experiencia en proyectos de inteligencia artificial. Ha dirigido 15 proyectos de investigación.</p>
+                            <div class="mb-2">
+                                <span class="badge badge-primary">Python</span>
+                                <span class="badge badge-primary">TensorFlow</span>
+                                <span class="badge badge-primary">Análisis de Datos</span>
+                                <span class="badge badge-primary">Investigación</span>
+                            </div>
+                            <div class="small text-muted">
+                                <i class="fas fa-university mr-1"></i> Departamento de Ciencias de la Computación
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <div class="text-xs font-weight-bold text-primary mb-1">Compatibilidad</div>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 92%"></div>
+                                </div>
+                                <small>92% con tu perfil</small>
+                            </div>
+                            <button class="btn btn-primary btn-block btn-sm mb-2">
+                                <i class="fas fa-envelope mr-1"></i> Contactar
+                            </button>
+                            <button class="btn btn-outline-primary btn-block btn-sm">
+                                <i class="fas fa-eye mr-1"></i> Ver perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultado 2 -->
+            <div class="card mb-3 border-left-success">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img class="rounded-circle mb-3" src="{% static 'img/undraw_profile_2.svg' %}" width="80" height="80">
+                            <div class="h6 mb-0 font-weight-bold">Ing. Laura M.</div>
+                            <small class="text-success">Colaboradora</small>
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title font-weight-bold">Desarrolladora Full Stack</h5>
+                            <p class="card-text">Estudiante avanzada con experiencia en desarrollo web. Ha participado en 3 proyectos exitosos en la universidad.</p>
+                            <div class="mb-2">
+                                <span class="badge badge-success">JavaScript</span>
+                                <span class="badge badge-success">React</span>
+                                <span class="badge badge-success">Node.js</span>
+                                <span class="badge badge-success">Django</span>
+                            </div>
+                            <div class="small text-muted">
+                                <i class="fas fa-graduation-cap mr-1"></i> Ingeniería en Sistemas (8vo semestre)
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <div class="text-xs font-weight-bold text-success mb-1">Compatibilidad</div>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                </div>
+                                <small>85% con tu proyecto</small>
+                            </div>
+                            <button class="btn btn-success btn-block btn-sm mb-2">
+                                <i class="fas fa-user-plus mr-1"></i> Invitar
+                            </button>
+                            <button class="btn btn-outline-success btn-block btn-sm">
+                                <i class="fas fa-eye mr-1"></i> Ver perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultado 3 -->
+            <div class="card mb-3 border-left-warning">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img class="rounded-circle mb-3" src="{% static 'img/undraw_profile_3.svg' %}" width="80" height="80">
+                            <div class="h6 mb-0 font-weight-bold">Lic. Javier F.</div>
+                            <small class="text-warning">Inversionista</small>
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title font-weight-bold">Especialista en Startups Tecnológicas</h5>
+                            <p class="card-text">Inversionista ángel con interés en proyectos innovadores. Ha financiado 5 proyectos universitarios en los últimos 2 años.</p>
+                            <div class="mb-2">
+                                <span class="badge badge-warning">Financiamiento</span>
+                                <span class="badge badge-warning">Mentoría</span>
+                                <span class="badge badge-warning">Negocios</span>
+                                <span class="badge badge-warning">Marketing</span>
+                            </div>
+                            <div class="small text-muted">
+                                <i class="fas fa-briefcase mr-1"></i> CEO en Tech Ventures Capital
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <div class="text-xs font-weight-bold text-warning mb-1">Compatibilidad</div>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 78%"></div>
+                                </div>
+                                <small>78% con tu idea</small>
+                            </div>
+                            <button class="btn btn-warning btn-block btn-sm mb-2">
+                                <i class="fas fa-handshake mr-1"></i> Proponer
+                            </button>
+                            <button class="btn btn-outline-warning btn-block btn-sm">
+                                <i class="fas fa-eye mr-1"></i> Ver perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paginación -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Modal de Ayuda -->
+<div class="modal fade" id="searchHelpModal" tabindex="-1" role="dialog" aria-labelledby="searchHelpModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchHelpModalLabel">Cómo buscar stakeholders</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Puedes buscar stakeholders por:</p>
+                <ul>
+                    <li><strong>Nombre:</strong> Busca por nombre completo o apellido</li>
+                    <li><strong>Habilidades:</strong> Usa términos como "Python", "Diseño UX" o "Finanzas"</li>
+                    <li><strong>Tipo de stakeholder:</strong> Asesores, Colaboradores o Inversionistas</li>
+                    <li><strong>Área de conocimiento:</strong> IA, Desarrollo Web, Negocios, etc.</li>
+                </ul>
+                <p>Los resultados se ordenan por compatibilidad con tu perfil o proyecto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .search-header {
+        padding: 1rem 0;
+    }
+    .card.border-left-primary { border-left-width: 4px; }
+    .card.border-left-success { border-left-width: 4px; }
+    .card.border-left-warning { border-left-width: 4px; }
+    .progress { height: 0.5rem; }
+    .badge { margin-right: 0.3rem; margin-bottom: 0.3rem; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Animación de las barras de progreso
+    $('.progress-bar').each(function() {
+        $(this).css('width', '0%').animate({
+            width: $(this).attr('style').split('width:')[1].split('%')[0] + '%'
+        }, 1000);
+    });
+
+    // Simular búsqueda
+    $('#searchButton').click(function() {
+        const query = $('#stakeholderSearch').val().trim();
+        if (query.length > 0) {
+            alert('Búsqueda simulada para: "' + query + '"');
+        } else {
+            alert('Por favor ingresa un término de búsqueda');
+        }
+    });
+
+    // Cambiar filtros activos
+    $('.btn-group button').click(function() {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+    });
+});
+</script>
+{% endblock %}

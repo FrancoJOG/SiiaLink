@@ -21,6 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', include('core.urls')),  # Uncomment this line to include the core app URLs
+    path('', include('core.urls')), 
+    path('projects/', include('core.urls')), 
     
 ]

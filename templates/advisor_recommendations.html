@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recomendación de Asesores - SiaaLink{% endblock %}
+
+{% block page_heading %}Asesores Recomendados{% endblock %}
+
+{% block page_actions %}
+    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#advisorFiltersModal">
+        <i class="fas fa-filter fa-sm text-white-50"></i> Filtros Avanzados
+    </button>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Asesores académicos disponibles</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- Asesor 1 -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-left-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img class="rounded-circle mr-3" src="{% static 'img/undraw_profile_1.svg' %}" width="60" height="60">
+                            <div>
+                                <h5 class="font-weight-bold mb-0">Dr. Carlos Rodríguez</h5>
+                                <span class="text-muted">Profesor Titular</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-primary">Inteligencia Artificial</span>
+                            <span class="badge badge-success">Machine Learning</span>
+                        </div>
+                        <p class="small">Experto en sistemas inteligentes con más de 10 años de experiencia en proyectos de investigación.</p>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small">
+                                <span>Disponibilidad:</span>
+                                <span class="font-weight-bold">Media (2 proyectos)</span>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">90% de compatibilidad con tu proyecto</small>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-sm mt-2">
+                            <i class="fas fa-envelope mr-2"></i> Contactar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asesor 2 -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-left-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img class="rounded-circle mr-3" src="{% static 'img/undraw_profile_2.svg' %}" width="60" height="60">
+                            <div>
+                                <h5 class="font-weight-bold mb-0">Dra. Laura Méndez</h5>
+                                <span class="text-muted">Profesora Asociada</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-info">Bases de Datos</span>
+                            <span class="badge badge-warning">Big Data</span>
+                        </div>
+                        <p class="small">Especialista en sistemas distribuidos y manejo de grandes volúmenes de información.</p>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small">
+                                <span>Disponibilidad:</span>
+                                <span class="font-weight-bold">Alta (5 proyectos)</span>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">85% de compatibilidad con tu proyecto</small>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-sm mt-2">
+                            <i class="fas fa-envelope mr-2"></i> Contactar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asesor 3 -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-left-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img class="rounded-circle mr-3" src="{% static 'img/undraw_profile_3.svg' %}" width="60" height="60">
+                            <div>
+                                <h5 class="font-weight-bold mb-0">Dr. Javier Fuentes</h5>
+                                <span class="text-muted">Profesor Auxiliar</span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge badge-danger">Seguridad Informática</span>
+                            <span class="badge badge-dark">Blockchain</span>
+                        </div>
+                        <p class="small">Investigador en ciberseguridad y tecnologías descentralizadas con múltiples publicaciones.</p>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small">
+                                <span>Disponibilidad:</span>
+                                <span class="font-weight-bold">Baja (1 proyecto)</span>
+                            </div>
+                            <div class="progress mt-1">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">75% de compatibilidad con tu proyecto</small>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-sm mt-2">
+                            <i class="fas fa-envelope mr-2"></i> Contactar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de búsqueda -->
+        <div class="mt-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar asesores por nombre o especialidad...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Filtros Avanzados -->
+<div class="modal fade" id="advisorFiltersModal" tabindex="-1" role="dialog" aria-labelledby="advisorFiltersModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="advisorFiltersModalLabel">Filtros Avanzados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Área de especialización</label>
+                    <select class="form-control">
+                        <option>Todas las áreas</option>
+                        <option>Inteligencia Artificial</option>
+                        <option>Bases de Datos</option>
+                        <option>Seguridad Informática</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nivel académico</label>
+                    <select class="form-control">
+                        <option>Cualquier nivel</option>
+                        <option>Profesor Titular</option>
+                        <option>Profesor Asociado</option>
+                        <option>Profesor Auxiliar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Compatibilidad mínima</label>
+                    <input type="range" class="form-control-range" min="50" max="100" value="70">
+                    <small class="text-muted">70% o más</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Aplicar Filtros</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Animación para las barras de progreso
+    $('.progress-bar').each(function() {
+        $(this).css('width', '0%').animate({
+            width: $(this).attr('aria-valuenow') + '%'
+        }, 1000);
+    });
+
+    // Acción de contacto
+    $('.btn-primary').click(function() {
+        const card = $(this).closest('.card');
+        const name = card.find('h5').text();
+        alert(`Solicitud de contacto enviada al ${name}`);
+    });
+});
+</script>
+{% endblock %}
