@@ -6,7 +6,7 @@ SiiaLink es un proyecto desarrollado con Django que tiene como objetivo gestiona
 
 Asegúrate de tener instalado lo siguiente:
 
-- Python 3.6 o superior
+- Python 3.10 o superior
 - Django 5.2 o superior
 
 ## Instalación
@@ -41,13 +41,23 @@ Asegúrate de tener instalado lo siguiente:
     ```bash
     python manage.py migrate
     ```
+    
+6. Crea la carpeta static/ en la raíz del proyecto:
+    ```bash
+    mkdir static
+    ```
 
-6. Inicia el servidor de desarrollo:
+7. Ejecuta el comando para recopilar los archivos estáticos:
+    ```bash
+    python manage.py collectstatic
+    ```
+
+8. Inicia el servidor de desarrollo:
     ```bash
     python manage.py runserver
     ```
 
-7. Accede a la aplicación en tu navegador en [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+9. Accede a la aplicación en tu navegador en [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
 ## Estructura del proyecto
 
