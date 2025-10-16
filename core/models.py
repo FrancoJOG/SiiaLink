@@ -18,25 +18,39 @@ def default_end_date():
 # =======================================
 
 ACCOUNT_TYPE_CHOICES = (
-    ('alumno', 'Alumno'),
-    ('profesor', 'Profesor'),
-    ('investigador', 'Investigador'),
-    ('externo', 'Externo'),
+    ('alumnoUDG', 'alumnoUDG'), #Credenciales siiau
+    ('profesorUDG', 'profesorUDG'), #Credenciales siiau
+    ('investigadorUDG', 'investigadorUDG'), #Credenciales siiau
+    #('alumno', 'Alumno'),
+    #('profesor', 'Profesor'), 
+    #('investigador', 'Investigador'), 
+    #('Empresa', 'Empresa'),
+    #('externo', 'Externo'), #Empresario, estudiante o profesor de otra universidad
 )
 
 PROJECT_TYPE_CHOICES = (
     ('investigación', 'Investigación'),
-    ('desarrollo', 'Desarrollo'),
+    ('Modular', 'Modular'),
+    ('Recreativo', 'Recreativo'),
+    ('Independiente', 'Independiente'),
 )
-
+#En un proyecto modular solo puede ser asesor un profesor de udg y participar integrantes de udg
 PROJECT_STATUS_CHOICES = (
     ('active', 'Activo'),
     ('completed', 'Completado'),
+    #('abandonado', 'Abandonado'),
+    #('Pausado', 'Pausado'),
 )
 
 ROLE_REQUIRED_CHOICES = (
     ('asesor', 'Asesor'),
+    #('Coasesor', 'coasesor'),
     ('colaborador', 'Colaborador'),
+    ('ExIntegrante', 'ExIntegrante'),
+    #('Expulsado', 'Expulsado'),
+    #('Desertor', 'Desertor'),
+    ('Cliente', 'Cliente'),
+    #('Patrocinador', 'Patrpcinador'),
 )
 
 # =======================================
